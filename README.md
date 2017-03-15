@@ -1,0 +1,9 @@
+# interlocker
+
+CIS 660 final project
+
+Maya plugin for determining interlocking furniture
+
+Original paper:
+
+http://delivery.acm.org/10.1145/2770000/2766892/a91-fu.pdf?ip=158.130.210.245&id=2766892&acc=ACTIVE%20SERVICE&key=A792924B58C015C1%2E18947888DF2D0EEA%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&CFID=739099421&CFTOKEN=95671205&__acm__=1489597593_c755a4ac84a29df041b39669bc2a2477
