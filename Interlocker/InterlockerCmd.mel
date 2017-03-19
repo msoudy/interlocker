@@ -21,10 +21,24 @@ global proc int createN()
 
 global proc int createInterlocker(string $grammerText)
 {
-    float $iterations = `floatSliderGrp -q -value angleSlider`;
-    float $stepSize = `floatSliderGrp -q -value iterationsSlider`;
-    float $angle = `floatSliderGrp -q -value stepSlider`;
-    LSystemCmd -s $stepSize -i $iterations -a $angle -g $grammerText;
+	string $selectedFurniture[];
+	$selectedFurniture = `textScrollList -q -selectItem furnitureScrollList`;
+	print $selectedFurniture[0];
+	$numFurniture = size($selectedFurniture);
+	if ($numFurniture == 0) {
+		confirmDialog -title "Error" -message "Please select a furniture from the list provided."
+			-button "Ok" -defaultButton "Ok"
+			-cancelButton "Ok" -dismissString "Ok";
+		//error "No Furniture Selected";
+		return false;
+	}
+
+	Interlocker -f $selectedFurniture[0];
+
+    //float $iterations = `floatSliderGrp -q -value angleSlider`;
+    //float $stepSize = `floatSliderGrp -q -value iterationsSlider`;
+    //float $angle = `floatSliderGrp -q -value stepSlider`;
+    //LSystemCmd -s $stepSize -i $iterations -a $angle -g $grammerText;
     return true;
 }
 
@@ -36,11 +50,12 @@ global proc int interlockerGUI()
 		text -label "Select Furniture: " browseText;
 		button -label "Browse.." -command "fileBrowser( \"openFileBrowser\", \"Open\", \"\", 0 );" browseBtn;
 		textScrollList -width 280 -height 200 -numberOfRows 8 -allowMultiSelection false
-			-append "Bookshelf"      -append "Baby Bed"      -append "Shoe Rack"
-			-append "Bench"     -append "Bed Stand"     -append "Console Table"
-			-append "Sofa"    -append "Chair"    -append "Stool"
-			-append "Bunk Bed"      -append "Headboard"   -append "Desk"
-			-append "Workbench" -append "Shelve" furnitureScrollField;
+			-append "Console Table" -append "Bookshelf" -append "Baby Bed"      
+			-append "Bench" -append "Bed Stand"	-append "Shoe Rack"
+			-append "Sofa" -append "Chair" -append "Stool"
+			-append "Bunk Bed" -append "Headboard" -append "Desk"
+			-append "Workbench" -append "Shelve" 
+		furnitureScrollList;
 		//scrollField -width 280 -height 200 -wordWrap true -text "Bookshelf\nBaby Bed\nShoe Rack\nBench\nBed Stand\nConsole Table\nSofa\nChair\nStool\nBunk Bed\nHeadboard\nDesk\nWorkbench\nShelve" -editable false grammerField;
 		text -label "Furniture Parameters: " parametersText;
 		text -label "Scale: " scaleText;
@@ -57,8 +72,8 @@ global proc int interlockerGUI()
 		-attachForm browseText "left" 5
 		-attachForm browseBtn "top" 5
 		-attachForm browseBtn "right" 5
-		-attachForm furnitureScrollField "top" 40
-		-attachForm furnitureScrollField "left" 10
+		-attachForm furnitureScrollList "top" 40
+		-attachForm furnitureScrollList "left" 10
 		-attachForm parametersText "top" 250
 		-attachForm parametersText "left" 10 
 		-attachForm scaleText "top" 280
