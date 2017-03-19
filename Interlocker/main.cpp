@@ -7,13 +7,13 @@
 //
 
 
-#include "parts_graph.h"
+#include "PartsGraph.h"
 
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
     // create furniture model of Figure 3 in the paper
-    Graph chair(6);
+	PartsGraph chair(6);
     
     chair.addEdge(0, 1);
     chair.addEdge(0, 3);
@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
     
     chair.printLIGs();
     
-    Graph bedStand(8);
+	PartsGraph bedStand(8);
     
     
     

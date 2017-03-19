@@ -1,6 +1,6 @@
-#include "parts_graph.h"
+#include "PartsGraph.h"
 
-Graph::Graph(int V)
+PartsGraph::PartsGraph(int V)
 {
     this->V = V;
     adj = new list<int>[V];
@@ -8,23 +8,23 @@ Graph::Graph(int V)
 }
 
 
-void Graph::addEdge(int v, int w)
+void PartsGraph::addEdge(int v, int w)
 {
     adj[v].push_back(w); // Add w to v’s list.
     adj[w].push_back(v); // Add v to w’s list.
 }
 
-Graph::~Graph()
+PartsGraph::~PartsGraph()
 {
     delete []adj;
 }
 
-void Graph::setLIGs(std::vector<int> cycle)
+void PartsGraph::setLIGs(std::vector<int> cycle)
 {
     cycles.push_back(cycle);
 }
 
-void Graph::printLIGs()
+void PartsGraph::printLIGs()
 {
     for (int i = 0; i < cycles.size(); i++)
     {

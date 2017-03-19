@@ -18,6 +18,8 @@
 #include <maya/MPxCommand.h>
 #include <maya/MSyntax.h>
 #include <maya/MArgDatabase.h>
+#include "PartsGraph.h"
+#include <iostream>
 
 // Use helper macro to register a command with Maya.  It creates and
 // registers a command that does not support undo or redo.  The 
@@ -99,7 +101,7 @@ MStatus initializePlugin(MObject obj)
 
 	char buffer[2048];
 	MString s = plugin.loadPath();
-	sprintf_s(buffer, 2048, "source \"%s/InterlockerCmd.mel\";", s.asChar());
+	sprintf_s(buffer, 2048, "source \"%s/../InterlockerCmd.mel\";", s.asChar());
 	MGlobal::executeCommand(buffer, true);
 
 	return stat;

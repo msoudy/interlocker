@@ -16,7 +16,7 @@ using namespace std;
 #define NOCYCLE -2
 
 // Class for an undirected graph
-class Graph
+class PartsGraph
 {
 private:
     int V;    // No. of vertices
@@ -25,8 +25,8 @@ private:
     std::vector<std::vector<int>> cycles;
     
 public:
-    Graph(int V);   // Constructor
-    ~Graph();       // Destructor
+	PartsGraph(int V);   // Constructor
+    ~PartsGraph();       // Destructor
     void addEdge(int v, int w);   // to add an edge to graph
     void setLIGs(std::vector<int>);
     void printLIGs();

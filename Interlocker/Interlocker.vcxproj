@@ -16,6 +16,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InterlockerCmd.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PartsGraph.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PartsGraph.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="InterlockerCmd.mel" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <Keyword>Win32Proj</Keyword>

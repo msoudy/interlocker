@@ -1,0 +1,93 @@
+global proc int openFileBrowser(string $filename,string $type) 
+
+{
+	global string $grammerText;
+	$fileId = `fopen $filename "r"`;
+	$grammerText = `fread $fileId $grammerText`;
+	scrollField -e -text $grammerText grammerField;
+	return true;
+}
+
+global proc int createN()
+{
+    createNode transform -n LSystem1;
+    createNode mesh -n LSystemShape1 -p LSystem1;
+    sets -add initialShadingGroup LSystemShape1;
+    createNode LSystemNode -n LSystemNode1;
+    connectAttr time1.outTime LSystemNode1.time;
+    connectAttr LSystemNode1.outputMesh LSystemShape1.inMesh;
+    return true;
+}
+
+global proc int createInterlocker(string $grammerText)
+{
+    float $iterations = `floatSliderGrp -q -value angleSlider`;
+    float $stepSize = `floatSliderGrp -q -value iterationsSlider`;
+    float $angle = `floatSliderGrp -q -value stepSlider`;
+    LSystemCmd -s $stepSize -i $iterations -a $angle -g $grammerText;
+    return true;
+}
+
+
+global proc int interlockerGUI() 
+{
+	window -title "Interlocker" -widthHeight 300 400 myWindow;
+    formLayout -numberOfDivisions 100 myForm;
+		text -label "Select Furniture: " browseText;
+		button -label "Browse.." -command "fileBrowser( \"openFileBrowser\", \"Open\", \"\", 0 );" browseBtn;
+		textScrollList -width 280 -height 200 -numberOfRows 8 -allowMultiSelection false
+			-append "Bookshelf"      -append "Baby Bed"      -append "Shoe Rack"
+			-append "Bench"     -append "Bed Stand"     -append "Console Table"
+			-append "Sofa"    -append "Chair"    -append "Stool"
+			-append "Bunk Bed"      -append "Headboard"   -append "Desk"
+			-append "Workbench" -append "Shelve" furnitureScrollField;
+		//scrollField -width 280 -height 200 -wordWrap true -text "Bookshelf\nBaby Bed\nShoe Rack\nBench\nBed Stand\nConsole Table\nSofa\nChair\nStool\nBunk Bed\nHeadboard\nDesk\nWorkbench\nShelve" -editable false grammerField;
+		text -label "Furniture Parameters: " parametersText;
+		text -label "Scale: " scaleText;
+		text -label "X: " scaleXText;
+		floatField -width 50 -minValue 1 -maxValue 10 -value 1 scaleX;
+		text -label "Y: " scaleYText;
+		floatField -width 50 -minValue 1 -maxValue 10 -value 1 scaleY;
+		text -label "Z: " scaleZText;
+		floatField -width 50 -minValue 1 -maxValue 10 -value 1 scaleZ;
+		button -label "Create" -command "createInterlocker($grammerText);" createBtn;
+		button -label "Cancel" -command "deleteUI myWindow" cancelBtn; 
+    formLayout -edit
+		-attachForm browseText "top" 10
+		-attachForm browseText "left" 5
+		-attachForm browseBtn "top" 5
+		-attachForm browseBtn "right" 5
+		-attachForm furnitureScrollField "top" 40
+		-attachForm furnitureScrollField "left" 10
+		-attachForm parametersText "top" 250
+		-attachForm parametersText "left" 10 
+		-attachForm scaleText "top" 280
+		-attachForm scaleText "left" 10
+		-attachForm scaleXText "top" 280
+		-attachForm scaleXText "left" 50
+		-attachForm scaleX "top" 277
+		-attachForm scaleX "left" 65
+		-attachForm scaleYText "top" 280
+		-attachForm scaleYText "left" 130
+		-attachForm scaleY "top" 277
+		-attachForm scaleY "left" 145
+		-attachForm scaleZText "top" 280
+		-attachForm scaleZText "left" 210
+		-attachForm scaleZ "top" 277
+		-attachForm scaleZ "left" 225
+		-attachForm createBtn "bottom" 10
+		-attachForm createBtn "left" 10 
+		-attachForm cancelBtn "bottom" 10
+		-attachForm cancelBtn "right" 10 
+    myForm; 
+	showWindow myWindow;
+	return true;
+}
+
+if (`menu -ex interlockerMenu`) {
+    deleteUI -m interlockerMenu;
+}
+
+menu -parent MayaWindow -label "Interlocker" -tearOff true interlockerMenu;
+    menuItem -label "Create Interlocker..." -command "interlockerGUI();";
+    //menuItem -label "LSystem Node Create" -command "createN();";
