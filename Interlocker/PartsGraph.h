@@ -24,7 +24,7 @@ using namespace std;
 
 
 // Class for an undirected graph
-class Graph
+class PartsGraph
 {
 private:
     int vertexCount;    // No. of vertices
@@ -40,8 +40,8 @@ private:
     std::vector<std::vector<int>> cycles;
     
 public:
-    Graph(int V);   // Constructor
-    ~Graph();       // Destructor
+    PartsGraph(int V);   // Constructor
+    ~PartsGraph();       // Destructor
     void addEdge(int v, int w, int direction);   // to add an edge to graph
     void removeEdge(int v, int w); // to remove an edge of graph
     void setLIGs(std::vector<int>);

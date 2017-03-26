@@ -1,9 +1,9 @@
-#include "parts_graph.h"
+#include "PartsGraph.h"
 
 using namespace std;
 
 
-Graph::Graph(int vertexCount)
+PartsGraph::PartsGraph(int vertexCount)
 {
     this->vertexCount = vertexCount;
     
@@ -26,7 +26,7 @@ Graph::Graph(int vertexCount)
 }
 
 
-void Graph::addEdge(int v, int w, int direction)
+void PartsGraph::addEdge(int v, int w, int direction)
 {
     
     if (v >= 0 && v < vertexCount && w > 0 && w < vertexCount) {
@@ -38,7 +38,7 @@ void Graph::addEdge(int v, int w, int direction)
 }
 
 
-void Graph::removeEdge(int v, int w) {
+void PartsGraph::removeEdge(int v, int w) {
     if (v >= 0 && v < vertexCount && w > 0 && w < vertexCount) {
         connection[v][w] = false;
         connection[w][v] = false;
@@ -50,18 +50,18 @@ void Graph::removeEdge(int v, int w) {
     }
 }
 
-Graph::~Graph()
+PartsGraph::~PartsGraph()
 {
     delete []connection;
     delete []connection_axis;
 }
 
-void Graph::setLIGs(std::vector<int> cycle)
+void PartsGraph::setLIGs(std::vector<int> cycle)
 {
     cycles.push_back(cycle);
 }
 
-void Graph::printLIGs()
+void PartsGraph::printLIGs()
 {
     for (int i = 0; i < cycles.size(); i++)
     {
@@ -75,7 +75,7 @@ void Graph::printLIGs()
 
 // test conditions like D(P1, P2) \ D(P1, P8) \ D(P1, P3)
 // check to see if all these joints con- sistently allow d(k1) as the free axial direction to move k1 out of the assembly.
-int Graph::helper_union(int index)
+int PartsGraph::helper_union(int index)
 {
     // get the axis connection status with all the rest
     
@@ -124,7 +124,7 @@ int Graph::helper_union(int index)
 }
 
 
-void Graph::constructG1()
+void PartsGraph::constructG1()
 {
     int firstKey;
     
