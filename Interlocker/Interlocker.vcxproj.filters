@@ -32,15 +32,21 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="PartsGraph.h">
+    <ClCompile Include="Box.cpp">
       <Filter>Source Files</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="InterlockerCmd.mel">
       <Filter>Source Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PartsGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

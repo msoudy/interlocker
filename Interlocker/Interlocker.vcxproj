@@ -15,11 +15,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="InterlockerCmd.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PartsGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Box.h" />
     <ClInclude Include="PartsGraph.h" />
   </ItemGroup>
   <ItemGroup>
