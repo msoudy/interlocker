@@ -18,6 +18,7 @@
 #include <maya/MPxCommand.h>
 #include <maya/MSyntax.h>
 #include <maya/MArgDatabase.h>
+#include <InterlockerNode.h>
 #include "PartsGraph.h"
 #include <iostream>
 
@@ -109,6 +110,10 @@ MStatus initializePlugin(MObject obj)
 	stat = plugin.registerCommand("Interlocker", interlocker::creator);
 	if (!stat) stat.perror("registerCommand failed");
 
+	stat = plugin.registerNode("InterlockerNode", InterlockerNode::id,
+		InterlockerNode::creator, InterlockerNode::initialize);
+	if (!stat) stat.perror("registerNode");
+
 
 	char buffer[2048];
 	MString s = plugin.loadPath();
@@ -139,5 +144,13 @@ MStatus uninitializePlugin(MObject obj)
 	MFnPlugin plugin(obj);
 	stat = plugin.deregisterCommand("Interlocker");
 	if (!stat) stat.perror("deregisterCommand failed");
+	stat = plugin.deregisterNode(InterlockerNode::id);
+	if (!stat) stat.perror("deregisterNode");
+
 	return stat;
+}
+
+MStatus MPxNode::dependsOn(const MPlug &, const MPlug &, bool &) const
+{
+	return MS::kUnknownParameter;
 }
