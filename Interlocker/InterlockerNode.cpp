@@ -4,7 +4,21 @@
 #include <maya/MFnNumericAttribute.h>
 #include <maya/MFnMeshData.h>
 #include <maya/MFnMesh.h>
+#include <cube.h>
+#include <cylinder.h>
+#include <consoletable.h>
 #include <iostream>
+#include <maya/MGlobal.h>
+#include <maya/MTime.h>
+#include <maya/MFloatVectorArray.h>
+#include <maya/MFnTransform.h>
+#include <cmath>
+#include "glm\glm.hpp"
+#include <maya\MMatrix.h>
+#include <maya/MBoundingBox.h>
+#include <maya/MDagPath.h>
+#include <maya/MSelectionList.h>
+#include <math.h>
 
 #define McheckErr(stat,msg)             \
         if ( MS::kSuccess != stat ) {   \
@@ -16,6 +30,7 @@ MTypeId InterlockerNode::id;
 MObject InterlockerNode::time;
 MObject InterlockerNode::scale;
 MObject InterlockerNode::outputMesh;
+MObject InterlockerNode::furniture;
 
 InterlockerNode::InterlockerNode()
 {
@@ -54,6 +69,12 @@ MStatus InterlockerNode::initialize()
 	unitAttr.setMin(0);
 	unitAttr.setMax(10);
 
+	InterlockerNode::furniture = typedAttr.create("furniture", "f",
+		MFnData::kString,
+		&returnStatus);
+	McheckErr(returnStatus, "ERROR creating furniture attribute\n");
+	typedAttr.setStorable(false);
+
 	InterlockerNode::outputMesh = typedAttr.create("outputMesh", "out",
 		MFnData::kMesh,
 		&returnStatus);
@@ -66,9 +87,14 @@ MStatus InterlockerNode::initialize()
 	returnStatus = addAttribute(InterlockerNode::scale);
 	McheckErr(returnStatus, "ERROR adding scale attribute\n");
 
+	returnStatus = addAttribute(InterlockerNode::furniture);
+	McheckErr(returnStatus, "ERROR adding furniture attribute\n");
+
 	returnStatus = addAttribute(InterlockerNode::outputMesh);
 	McheckErr(returnStatus, "ERROR adding outputMesh attribute\n");
 
+	returnStatus = attributeAffects(InterlockerNode::furniture, InterlockerNode::outputMesh);
+	McheckErr(returnStatus, "ERROR in attributeAffects\n");
 	returnStatus = attributeAffects(InterlockerNode::time, InterlockerNode::outputMesh);
 	McheckErr(returnStatus, "ERROR in attributeAffects\n");
 	returnStatus = attributeAffects(InterlockerNode::scale, InterlockerNode::outputMesh);
@@ -89,6 +115,9 @@ MStatus InterlockerNode::compute(const MPlug& plug, MDataBlock& data)
 		MDataHandle scaleData = data.inputValue(scale, &returnStatus);
 		McheckErr(returnStatus, "Error getting step data handle\n");
 
+		MDataHandle furnitureData = data.inputValue(furniture, &returnStatus);
+		McheckErr(returnStatus, "Error getting furniture data handle\n");
+
 		MDataHandle outputHandle = data.outputValue(outputMesh, &returnStatus);
 		McheckErr(returnStatus, "ERROR getting polygon data handle\n");
 
@@ -96,8 +125,33 @@ MStatus InterlockerNode::compute(const MPlug& plug, MDataBlock& data)
 		MObject newOutputData = dataCreator.create(&returnStatus);
 		McheckErr(returnStatus, "ERROR creating outputData");
 
+		//std::cout << int(timeData.asTime().value()) << std::endl;
 
-		std::cout << scaleData.asFloat() << std::endl;
+		MString furnitureName = furnitureData.asString();
+
+		MPointArray points;
+		MIntArray faceCounts;
+		MIntArray faceConnects;
+
+		int currentTime = int(timeData.asTime().value());
+		if (currentTime == 0) currentTime++;
+
+		ConsoleTable table = ConsoleTable();
+		std::vector<MPoint> transformations = table.updateTransformations(currentTime);
+
+		if (furnitureName == "Console Table") {
+			std::cout << "Creating Console Table..." << std::endl;
+
+			for (unsigned int i = 0; i < transformations.size(); i += 3) {
+				CubeMesh c = CubeMesh(transformations[i], transformations[i + 1], transformations[i + 2], timeData.asTime().value());
+				c.appendToMesh(points, faceCounts, faceConnects);
+			}
+
+		}
+
+		MFnMesh mesh;
+		mesh.create(points.length(), faceCounts.length(), points, faceCounts, faceConnects, newOutputData, &returnStatus);
+
 
 		outputHandle.set(newOutputData);
 		data.setClean(plug);

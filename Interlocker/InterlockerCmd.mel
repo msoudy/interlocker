@@ -10,12 +10,12 @@ global proc int openFileBrowser(string $filename,string $type)
 
 global proc int createN()
 {
-    createNode transform -n LSystem1;
-    createNode mesh -n LSystemShape1 -p LSystem1;
-    sets -add initialShadingGroup LSystemShape1;
-    createNode LSystemNode -n LSystemNode1;
-    connectAttr time1.outTime LSystemNode1.time;
-    connectAttr LSystemNode1.outputMesh LSystemShape1.inMesh;
+    createNode transform -n Interlocker1;
+    createNode mesh -n InterlockerShape1 -p Interlocker1;
+    sets -add initialShadingGroup InterlockerShape1;
+    createNode InterlockerNode -n InterlockerNode1;
+    connectAttr time1.outTime InterlockerNode1.time;
+    connectAttr InterlockerNode1.outputMesh InterlockerShape1.inMesh;
     return true;
 }
 
@@ -105,4 +105,4 @@ if (`menu -ex interlockerMenu`) {
 
 menu -parent MayaWindow -label "Interlocker" -tearOff true interlockerMenu;
     menuItem -label "Create Interlocker..." -command "interlockerGUI();";
-    //menuItem -label "LSystem Node Create" -command "createN();";
+    menuItem -label "Interlocker Node Create" -command "createN();";

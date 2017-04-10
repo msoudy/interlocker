@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="consoletable.cpp" />
+    <ClCompile Include="cube.cpp" />
+    <ClCompile Include="furniture.cpp" />
     <ClCompile Include="InterlockerCmd.cpp" />
     <ClCompile Include="InterlockerNode.cpp" />
     <ClCompile Include="main.cpp" />
@@ -23,6 +26,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
+    <ClInclude Include="consoletable.h" />
+    <ClInclude Include="cube.h" />
+    <ClInclude Include="furniture.h" />
     <ClInclude Include="InterlockerNode.h" />
     <ClInclude Include="PartsGraph.h" />
   </ItemGroup>

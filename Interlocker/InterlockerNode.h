@@ -5,7 +5,7 @@ class InterlockerNode :
 {
 public:
 	InterlockerNode();
-	~InterlockerNode();
+	virtual ~InterlockerNode();
 
 	virtual MStatus compute(const MPlug& plug, MDataBlock& data);
 	static  void* creator();
@@ -14,6 +14,7 @@ public:
 
 	static MObject time;
 	static MObject scale;
+	static MObject furniture;
 	static MObject outputMesh;
 	static MString path;
 };
