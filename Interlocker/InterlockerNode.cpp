@@ -5,7 +5,6 @@
 #include <maya/MFnMeshData.h>
 #include <maya/MFnMesh.h>
 #include <cube.h>
-#include <cylinder.h>
 #include <consoletable.h>
 #include <iostream>
 #include <maya/MGlobal.h>
