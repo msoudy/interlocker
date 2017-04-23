@@ -55,7 +55,6 @@ private:
     
     vector<int> order;
 
-
 public:
     Graph(int V);   // Constructor
     ~Graph();       // Destructor
@@ -78,4 +77,10 @@ public:
     void printKeys();
     void printLIGs();
     void printOrder();
+    
+    // for intergration
+    vector<int> assembly_order;
+    vector<int> assembly_axis;
+
+    
 };
