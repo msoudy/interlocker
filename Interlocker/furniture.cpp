@@ -1,6 +1,7 @@
 #include "furniture.h"
 
 
+// git pull request testing
 
 Furniture::Furniture(int furniture_id, MPoint o, float radius) : id(furniture_id), origin(o), explosion_radius(radius)
 {
