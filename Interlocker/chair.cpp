@@ -3,6 +3,8 @@
 #include <math.h>
 #include "glm\glm.hpp"
 
+
+//joint fully intersect with each other
 chair::chair() : Furniture(1, MPoint(0,0,0), 5)
 {
 	num_parts = 12;
@@ -13,18 +15,18 @@ chair::chair() : Furniture(1, MPoint(0,0,0), 5)
 	part_interlock_duration = 30;
 
 	transformations = {
-		MPoint(0.2,2,2), MPoint(0,0,90), MPoint(0,0,0), //p1
-		MPoint(0.2,0.2,3), MPoint(0,0,0), MPoint(0.33,-1,1.5), //p2
-		MPoint(0.2,0.2,3), MPoint(0,0,0), MPoint(-0.33,-1,1.5), //p3
-		MPoint(0.2,0.2,2), MPoint(0,0,90), MPoint(0,-1,3), //p4
-		MPoint(0.2,0.2,3), MPoint(0,0,90), MPoint(1,-1,1.5), //p5
-		MPoint(0.2,0.2,2), MPoint(0,0,90), MPoint(0,-1,-1.5), //p6
-		MPoint(0.2,0.2,3), MPoint(0,0,0), MPoint(-1,-1,1.5), //p7
-		MPoint(0.2,2,0.2), MPoint(0,0,0), MPoint(-1,0,-1.5), //p8		
-		MPoint(0.2,0.2,3), MPoint(0,0,0), MPoint(-1,1,-1.5), //p9
-		MPoint(0.2,0.2,2), MPoint(0,0,90), MPoint(0,1,-1.5), //p10
-		MPoint(0.2,0.2,3), MPoint(0,0,0), MPoint(1,1,-1.5), //p11
-		MPoint(0.2,2,0.2), MPoint(0,0,0), MPoint(1,0,-1.5), //p12
+		MPoint(2,2,0.2), MPoint(0,0,0), MPoint(0,0,0), //p1
+		MPoint(0.2,0.2,3), MPoint(0,0,0), MPoint(0.33,-0.9,1.4), //p2
+		MPoint(0.2,0.2,3), MPoint(0,0,0), MPoint(-0.33,-0.9,1.4), //p3
+		MPoint(2,0.2,0.2), MPoint(0,0,0), MPoint(0,-0.9,2.8), //p4
+		MPoint(0.2,0.2,8), MPoint(0,0,0), MPoint(0.9,-0.9,0), //p5
+		MPoint(2,0.2,0.2), MPoint(0,0,0), MPoint(0,-0.9,-2), //p6
+		MPoint(0.2,0.2,8), MPoint(0,0,0), MPoint(-0.9,-0.9,0), //p7
+		MPoint(0.2,2,0.2), MPoint(0,0,0), MPoint(-0.9,0,-2), //p8
+		MPoint(0.2,0.2,4), MPoint(0,0,0), MPoint(-0.9,0.9,-1.9), //p9
+		MPoint(2,0.2,0.2), MPoint(0,0,0), MPoint(0,0.9,-2), //p10
+		MPoint(0.2,0.2,4), MPoint(0,0,0), MPoint(0.9,0.9,-1.9), //p11
+		MPoint(0.2,2,0.2), MPoint(0,0,0), MPoint(0.9,0,-2), //p12
 	};
 
 	mobility = {
