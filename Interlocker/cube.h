@@ -7,6 +7,7 @@
 #include <maya/MVectorArray.h>
 #include <maya/MIntArray.h>
 #include <maya/MDoubleArray.h>
+#include "glm\glm.hpp"
 
 
 class CubeMesh
@@ -25,12 +26,16 @@ public:
 		MIntArray& faceCounts,
 		MIntArray& faceConnects);
 
+	glm::vec3 min;
+	glm::vec3 max;
+
 	MMatrix rotateBy(float angle, float x, float y, float z);
 	MMatrix translateBy(float x, float y, float z);
 	MMatrix scaleBy(float x, float y, float z);
 
 protected:
 	void transform(MPointArray& points, MVectorArray& normals);
+	void setMinMax();
 	MPoint scale;
 	MPoint rotation;
 	MPoint translation;

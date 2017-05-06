@@ -24,7 +24,7 @@ enum Mobility {
 
 int main(int argc, const char * argv[]) {
     // 1. desk(too verbose)
-    Graph desk(6);
+    /*Graph desk(6);
     
     desk.setName("desk");
     desk.addEdge(0, 1, Y);
@@ -256,7 +256,7 @@ int main(int argc, const char * argv[]) {
             cout << bed.assembly_axis[i] << " ";
     }
     
-    
+    */
     
     return 0;
 }

@@ -1,18 +1,18 @@
 #include "cube.h"
 #include <maya/MMatrix.h>
 #include <math.h>
-#include "glm\glm.hpp"
 
 MPointArray CubeMesh::gPoints;
 MVectorArray CubeMesh::gNormals;
 MIntArray CubeMesh::gFaceCounts;
 MIntArray CubeMesh::gFaceConnects;
 
-CubeMesh::CubeMesh(MPoint s, MPoint r, MPoint tr, const int& t) : scale(s), rotation(r), translation(tr), time(t)
+CubeMesh::CubeMesh(MPoint s, MPoint r, MPoint tr, const int& t) : scale(s), rotation(r), translation(tr), time(t), min(1000), max(-1000)
 {
 	//if (gPoints.length() == 0)
 	//{
 	initCubeMesh();
+	setMinMax();
 	//}
 }
 
@@ -110,6 +110,20 @@ void CubeMesh::transform(MPointArray & points, MVectorArray & normals)
 		MVector n = gNormals[i] * sca * rotX * rotY * rotZ * tra;
 		normals.append(n);
 		normals.append(gNormals[i]);
+	}
+}
+
+void CubeMesh::setMinMax()
+{
+	MPointArray points;
+	MVectorArray cnormals;
+	transform(points, cnormals);
+
+	for (unsigned int i = 0; i < points.length(); i++)
+	{
+		glm::vec3 p = glm::vec3(points[i].x, points[i].y, points[i].z);
+		min = glm::min(min, p);
+		max = glm::max(max, p);
 	}
 }
 

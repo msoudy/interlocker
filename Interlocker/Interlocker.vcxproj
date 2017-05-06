@@ -15,7 +15,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bedstand.cpp" />
+    <ClCompile Include="bookshelf.cpp" />
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="chair.cpp" />
     <ClCompile Include="consoletable.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="furniture.cpp" />
@@ -23,14 +26,21 @@
     <ClCompile Include="InterlockerNode.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PartsGraph.cpp" />
+    <ClCompile Include="shoerack.cpp" />
+    <ClCompile Include="sofa.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bedstand.h" />
+    <ClInclude Include="bookshelf.h" />
     <ClInclude Include="Box.h" />
+    <ClInclude Include="chair.h" />
     <ClInclude Include="consoletable.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="furniture.h" />
     <ClInclude Include="InterlockerNode.h" />
     <ClInclude Include="PartsGraph.h" />
+    <ClInclude Include="shoerack.h" />
+    <ClInclude Include="sofa.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="InterlockerCmd.mel" />

@@ -6,6 +6,11 @@
 #include <maya/MFnMesh.h>
 #include <cube.h>
 #include <consoletable.h>
+#include <bedstand.h>
+#include <sofa.h>
+#include <shoerack.h>
+#include <bookshelf.h>
+#include <chair.h>
 #include <iostream>
 #include <maya/MGlobal.h>
 #include <maya/MTime.h>
@@ -138,12 +143,27 @@ MStatus InterlockerNode::compute(const MPlug& plug, MDataBlock& data)
 		ConsoleTable table = ConsoleTable();
 		std::vector<MPoint> transformations = table.updateTransformations(currentTime);
 
-		if (furnitureName == "Console Table") {
+		std::vector<CubeMesh> parts;
+
+		if (furnitureName == "") {
 			std::cout << "Creating Console Table..." << std::endl;
 
 			for (unsigned int i = 0; i < transformations.size(); i += 3) {
 				CubeMesh c = CubeMesh(transformations[i], transformations[i + 1], transformations[i + 2], timeData.asTime().value());
+				parts.push_back(c);
+
 				c.appendToMesh(points, faceCounts, faceConnects);
+
+				if (i == 0) {
+
+					glm::vec3 min = c.min;
+					glm::vec3 max = c.max;
+
+					std::cout << "min : " << min.x << " " << min.y << " " << min.z << std::endl;
+					std::cout << "max : " << max.x << " " << max.y << " " << max.z << std::endl;
+
+				}
+
 			}
 
 		}

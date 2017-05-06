@@ -47,6 +47,21 @@
     <ClCompile Include="furniture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bedstand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bookshelf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="chair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shoerack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sofa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="InterlockerCmd.mel">
@@ -70,6 +85,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="furniture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bedstand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bookshelf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="chair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shoerack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sofa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
