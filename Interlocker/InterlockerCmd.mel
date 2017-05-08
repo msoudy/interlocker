@@ -51,10 +51,8 @@ global proc int interlockerGUI()
 		button -label "Browse.." -command "fileBrowser( \"openFileBrowser\", \"Open\", \"\", 0 );" browseBtn;
 		textScrollList -width 280 -height 200 -numberOfRows 8 -allowMultiSelection false
 			-append "Console Table" -append "Bookshelf" -append "Baby Bed"      
-			-append "Bench" -append "Bed Stand"	-append "Shoe Rack"
-			-append "Sofa" -append "Chair" -append "Stool"
-			-append "Bunk Bed" -append "Headboard" -append "Desk"
-			-append "Workbench" -append "Shelve" 
+			-append "Bed Stand"	-append "Shoe Rack"
+			-append "Sofa" -append "Chair"
 		furnitureScrollList;
 		//scrollField -width 280 -height 200 -wordWrap true -text "Bookshelf\nBaby Bed\nShoe Rack\nBench\nBed Stand\nConsole Table\nSofa\nChair\nStool\nBunk Bed\nHeadboard\nDesk\nWorkbench\nShelve" -editable false grammerField;
 		text -label "Furniture Parameters: " parametersText;
