@@ -30,6 +30,8 @@ public:
 	int part_interlock_duration;
 	std::vector<MPoint> transformations;
 	std::vector<Mobility> mobility;
+	std::vector<MPoint> jointTransformations;
+
 
 	MPoint translateBasedOnMobility(MPoint p, Mobility m);
 	std::vector<MPoint> updateTransformations(int time);

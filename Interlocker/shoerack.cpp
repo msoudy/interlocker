@@ -32,7 +32,7 @@ shoerack::shoerack() : Furniture(1, MPoint(0,0,0), 5)
 		X_MINUS,
 		Y_MINUS,
 		X_MINUS,
-		Z_PLUS，
+		Z_PLUS,
 		Y_MINUS
 	};
 

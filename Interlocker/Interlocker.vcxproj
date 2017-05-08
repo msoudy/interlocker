@@ -24,6 +24,7 @@
     <ClCompile Include="furniture.cpp" />
     <ClCompile Include="InterlockerCmd.cpp" />
     <ClCompile Include="InterlockerNode.cpp" />
+    <ClCompile Include="joint.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PartsGraph.cpp" />
     <ClCompile Include="shoerack.cpp" />
@@ -38,6 +39,7 @@
     <ClInclude Include="cube.h" />
     <ClInclude Include="furniture.h" />
     <ClInclude Include="InterlockerNode.h" />
+    <ClInclude Include="joint.h" />
     <ClInclude Include="PartsGraph.h" />
     <ClInclude Include="shoerack.h" />
     <ClInclude Include="sofa.h" />

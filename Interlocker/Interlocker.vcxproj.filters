@@ -62,6 +62,9 @@
     <ClCompile Include="sofa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="joint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="InterlockerCmd.mel">
@@ -100,6 +103,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sofa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="joint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
